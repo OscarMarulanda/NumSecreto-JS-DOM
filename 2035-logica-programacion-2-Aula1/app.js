@@ -6,6 +6,7 @@ function verificarIntento() {
 
     if (numeroDeUsuario === numeroSecreto) {
         asignarTextoElemento('.texto__parrafo', `Acertaste el número en ${intentos} ${intentos == 1 ? "intento" : "intentos"}`)
+        activarNuevoJuego()
     } else {
         //el usurio no acertó
         limpiarCaja()
@@ -17,6 +18,18 @@ function verificarIntento() {
         intentos++
     }
 
+}
+
+function nuevoJuego(){
+    limpiarCaja();
+    numeroSecreto = generarNumeroSecreto();
+    intentos = 1;
+    activarNuevoJuego();
+    asignarTextoElemento('.texto__parrafo', 'Escoge un número del 1 al 10.')
+}
+
+function activarNuevoJuego(){
+    document.getElementById('reiniciar').disabled == false? document.getElementById('reiniciar').disabled = true : document.getElementById('reiniciar').disabled = false;
 }
 
 function limpiarCaja(){
