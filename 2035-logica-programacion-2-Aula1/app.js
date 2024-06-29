@@ -1,5 +1,5 @@
-let numeroSecreto = generarNumeroSecreto();
-let intentos = 1;
+let numeroSecreto;
+let intentos;
 
 function verificarIntento() {
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
@@ -22,10 +22,8 @@ function verificarIntento() {
 
 function nuevoJuego(){
     limpiarCaja();
-    numeroSecreto = generarNumeroSecreto();
-    intentos = 1;
     activarNuevoJuego();
-    asignarTextoElemento('.texto__parrafo', 'Escoge un número del 1 al 10.')
+    condicionesIniciales()
 }
 
 function activarNuevoJuego(){
@@ -40,8 +38,14 @@ function asignarTextoElemento(elem, innerText) {
     document.querySelector(elem).innerHTML = innerText;
 }
 
-asignarTextoElemento("h1", "Número secreto")
-asignarTextoElemento('.texto__parrafo', 'Escoge un número del 1 al 10.')
+function condicionesIniciales(){
+    asignarTextoElemento("h1", "Número secreto")
+    asignarTextoElemento('.texto__parrafo', 'Escoge un número del 1 al 10.');
+    numeroSecreto = generarNumeroSecreto();
+    intentos = 1;
+}
+
+condicionesIniciales()
 
 function generarNumeroSecreto() {
     return Math.floor(Math.random() * 10) + 1;
