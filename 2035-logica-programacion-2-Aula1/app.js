@@ -8,7 +8,7 @@ function verificarIntento() {
         asignarTextoElemento('.texto__parrafo', `Acertaste el número en ${intentos} ${intentos == 1 ? "intento" : "intentos"}`)
     } else {
         //el usurio no acertó
-        document.querySelector('#valorUsuario').value = ""
+        limpiarCaja()
         if (numeroDeUsuario > numeroSecreto) {
             asignarTextoElemento('.texto__parrafo', 'El número secreto es menor')
         } else {
@@ -17,6 +17,10 @@ function verificarIntento() {
         intentos++
     }
 
+}
+
+function limpiarCaja(){
+    document.querySelector('#valorUsuario').value = ""
 }
 
 function asignarTextoElemento(elem, innerText) {
