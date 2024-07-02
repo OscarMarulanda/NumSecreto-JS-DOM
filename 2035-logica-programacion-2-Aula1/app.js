@@ -1,5 +1,8 @@
 let numeroSecreto;
+
 let intentos;
+let numerosUsados = [];
+let numeroMaximo = 10;
 
 function verificarIntento() {
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
@@ -20,17 +23,17 @@ function verificarIntento() {
 
 }
 
-function nuevoJuego(){
+function nuevoJuego() {
     limpiarCaja();
     activarNuevoJuego();
     condicionesIniciales()
 }
 
-function activarNuevoJuego(){
-    document.getElementById('reiniciar').disabled == false? document.getElementById('reiniciar').disabled = true : document.getElementById('reiniciar').disabled = false;
+function activarNuevoJuego() {
+    document.getElementById('reiniciar').disabled == false ? document.getElementById('reiniciar').disabled = true : document.getElementById('reiniciar').disabled = false;
 }
 
-function limpiarCaja(){
+function limpiarCaja() {
     document.querySelector('#valorUsuario').value = ""
 }
 
@@ -38,17 +41,32 @@ function asignarTextoElemento(elem, innerText) {
     document.querySelector(elem).innerHTML = innerText;
 }
 
-function condicionesIniciales(){
+function condicionesIniciales() {
     asignarTextoElemento("h1", "Número secreto")
-    asignarTextoElemento('.texto__parrafo', 'Escoge un número del 1 al 10.');
+    asignarTextoElemento('.texto__parrafo', `Escoge un número del 1 al ${numeroMaximo}.`);
     numeroSecreto = generarNumeroSecreto();
+    console.log(numeroSecreto);
     intentos = 1;
 }
 
 condicionesIniciales()
 
 function generarNumeroSecreto() {
-    return Math.floor(Math.random() * 10) + 1;
+    let nuevoNumero = Math.floor(Math.random() * numeroMaximo) + 1;
+
+    if (numerosUsados.length == numeroMaximo) {
+        asignarTextoElemento("p", "no hay más números")
+    } else {
+
+        if (numerosUsados.includes(nuevoNumero)) {
+
+            return generarNumeroSecreto();
+        } else {
+
+            numerosUsados.push(nuevoNumero);
+            return nuevoNumero;
+        }
+    }
 }
 
 /*let numSecreto;
