@@ -55,7 +55,7 @@ function generarNumeroSecreto() {
     let nuevoNumero = Math.floor(Math.random() * numeroMaximo) + 1;
 
     if (numerosUsados.length == numeroMaximo) {
-        asignarTextoElemento("p", "no hay más números")
+        asignarTextoElemento("p", "Se han acabado los números. Presiona f5 para volver a jugar")
     } else {
 
         if (numerosUsados.includes(nuevoNumero)) {
